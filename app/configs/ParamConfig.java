@@ -1,4 +1,4 @@
-package services;
+package configs;
 
 /**
  * := Coded with love by Sakib Sami on 7/25/17.
@@ -7,6 +7,6 @@ package services;
  * := Coffee : Dream : Code
  */
 
-public class MinioService {
-
+public class ParamConfig {
+    public static String PARAM_BUCKET_NAME = "bucket_name";
 }

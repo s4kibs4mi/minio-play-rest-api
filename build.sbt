@@ -1,6 +1,6 @@
 name := "minio-play-rest-api"
 
-version := "1.0"
+version := "0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
