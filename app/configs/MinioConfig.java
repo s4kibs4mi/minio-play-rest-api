@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class MinioConfig {
     public static String getMsHost() {
-        return "http://188.166.242.24";
+        return "http://localhost:9000/api/v1";
     }
 
     public static String getMsUri() {

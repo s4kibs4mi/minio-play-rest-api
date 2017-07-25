@@ -34,8 +34,9 @@ public class MinioObjectService {
             minioConnectionService.getMinioClient().putObject(bucketName, objectName, inputStream, contentType);
             JsonObject data = new JsonObject();
             data.add("object_name", objectName);
-            data.add("object_url", MinioConfig.getMsHost() + File.pathSeparator +
-                    bucketName + File.pathSeparator + objectName);
+            data.add("object_url", MinioConfig.getMsHost() +
+                    File.separator + "bucket" + File.separator + bucketName +
+                    File.separator + "object" + File.separator + objectName);
 
             result.add("code", 200);
             result.add("response", "success");
@@ -52,5 +53,14 @@ public class MinioObjectService {
             result.add("message", e.getMessage());
         }
         return result;
+    }
+
+    public InputStream getObject(String bucketName, String objectName) {
+        try {
+            return minioConnectionService.getMinioClient().getObject(bucketName, objectName);
+        } catch (InvalidBucketNameException | NoSuchAlgorithmException | InsufficientDataException | InvalidKeyException | IOException | XmlPullParserException | NoResponseException | InternalException | ErrorResponseException | InvalidArgumentException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
