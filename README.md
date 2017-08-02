@@ -1,5 +1,5 @@
-# minio-play-rest-api
-Minio AWS S3 compatible object storage server rest api based on Java Play Framework 2.
+# Minio-Play-Rest-Api
+Rest API for Minio ( AWS S3 compatible object storage server ) based on Java Play Framework 2.
 
 
 ### Documentation

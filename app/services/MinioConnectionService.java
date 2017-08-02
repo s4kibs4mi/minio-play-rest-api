@@ -25,6 +25,10 @@ public class MinioConnectionService {
     private MinioClient minioClient;
 
     private MinioConnectionService() {
+        init();
+    }
+
+    private void init() {
         try {
             minioClient = new MinioClient(MinioConfig.getMsUri(),
                     MinioConfig.getMsAccessKey(), MinioConfig.getMsSecret());

@@ -1,5 +1,8 @@
 package configs;
 
+import play.Configuration;
+import play.Environment;
+
 import java.util.UUID;
 
 /**
@@ -10,20 +13,22 @@ import java.util.UUID;
  */
 
 public class MinioConfig {
+    private static Configuration configuration = Configuration.load(Environment.simple());
+
     public static String getMsHost() {
-        return "http://localhost:9000/api/v1";
+        return configuration.getString("minioConfig.msHost");
     }
 
     public static String getMsUri() {
-        return "http://188.166.242.24:9000";
+        return configuration.getString("minioConfig.msUri");
     }
 
     public static String getMsSecret() {
-        return "ByySJw6Pan26T96YW+ptBxls6cMyeRbYq9XxSlhL";
+        return configuration.getString("minioConfig.msSecrete");
     }
 
     public static String getMsAccessKey() {
-        return "1C9RWK7AAPXPHH2ZS2IC";
+        return configuration.getString("minioConfig.msAccessToken");
     }
 
     public static String getRandomText() {
