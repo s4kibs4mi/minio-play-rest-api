@@ -16,9 +16,12 @@ import play.Logger;
 public class MinioConnectionService {
     private String TAG = this.getClass().getSimpleName();
 
-    private static MinioConnectionService minioConnectionInstance = new MinioConnectionService();
+    private static MinioConnectionService minioConnectionInstance;
 
     public static MinioConnectionService getInstance() {
+        if (minioConnectionInstance == null) {
+            minioConnectionInstance = new MinioConnectionService();
+        }
         return minioConnectionInstance;
     }
 
