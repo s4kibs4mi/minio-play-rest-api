@@ -14,6 +14,7 @@ import play.Logger;
  */
 
 public class MinioConnectionService {
+
     private String TAG = this.getClass().getSimpleName();
 
     private static MinioConnectionService minioConnectionInstance;

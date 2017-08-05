@@ -1,9 +1,7 @@
 package controllers;
 
-import com.eclipsesource.json.JsonObject;
 import configs.MinioConfig;
 import play.Logger;
-import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import services.MinioObjectService;
@@ -19,7 +17,7 @@ import java.io.InputStream;
  * := Coffee : Dream : Code
  */
 
-public class MinioObjectController extends Controller {
+public class MinioObjectController extends MinioController {
     private String TAG = this.getClass().getSimpleName();
 
     private MinioObjectService minioObjectService = new MinioObjectService();
@@ -54,13 +52,5 @@ public class MinioObjectController extends Controller {
             Logger.debug(TAG + " : " + ex.getMessage());
         }
         return notFound("Content " + objectName + " not found in " + bucketName + ".");
-    }
-
-    public JsonObject getUnknownErrorResult() {
-        return new JsonObject().add("code", 500).add("response", "error");
-    }
-
-    public JsonObject getUnknownErrorResult(String message) {
-        return new JsonObject().add("code", 500).add("response", "error").add("message", message);
     }
 }

@@ -1,11 +1,9 @@
 package controllers;
 
-import com.eclipsesource.json.JsonObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import configs.ParamConfig;
 import play.Logger;
 import play.libs.Json;
-import play.mvc.Controller;
 import play.mvc.Result;
 import services.MinioBucketService;
 
@@ -16,7 +14,7 @@ import services.MinioBucketService;
  * := Coffee : Dream : Code
  */
 
-public class MinioBucketController extends Controller {
+public class MinioBucketController extends MinioController {
     private String TAG = this.getClass().getSimpleName();
 
     private MinioBucketService minioBucketService = new MinioBucketService();
@@ -57,13 +55,5 @@ public class MinioBucketController extends Controller {
             ex.printStackTrace();
         }
         return ok(getUnknownErrorResult().toString());
-    }
-
-    public JsonObject getUnknownErrorResult() {
-        return new JsonObject().add("code", 500).add("response", "error");
-    }
-
-    public JsonObject getUnknownErrorResult(String message) {
-        return new JsonObject().add("code", 500).add("response", "error").add("message", message);
     }
 }
