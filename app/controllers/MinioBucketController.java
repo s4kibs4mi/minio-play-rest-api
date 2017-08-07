@@ -22,8 +22,8 @@ public class MinioBucketController extends MinioController {
     public Result create() {
         try {
             JsonNode params = request().body().asJson();
-            if (params.get(ParamConfig.PARAM_BUCKET_NAME) != null) {
-                String bucketName = params.get(ParamConfig.PARAM_BUCKET_NAME).asText();
+            if (params.get(ParamConfig.PARAM_BUCKET_KEY) != null) {
+                String bucketName = params.get(ParamConfig.PARAM_BUCKET_KEY).asText();
                 return ok(Json.parse(minioBucketService.create(bucketName).toString()));
             }
         } catch (Exception ex) {

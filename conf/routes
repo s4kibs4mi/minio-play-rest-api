@@ -2,15 +2,23 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Managing Bucket
+### Index
+GET           /                                                    controllers.HomeController.home()
+
+### Managing Bucket
 POST          /api/v1/bucket/create                                controllers.MinioBucketController.create()
 GET           /api/v1/bucket/list                                  controllers.MinioBucketController.list()
 DELETE        /api/v1/bucket/remove/:bucketName                    controllers.MinioBucketController.remove(bucketName: String)
 GET           /api/v1/bucket/check/:bucketName                     controllers.MinioBucketController.check(bucketName: String)
 
-# Managing Object
+### Managing Object
 POST          /api/v1/bucket/:bucketName/object/create             controllers.MinioObjectController.create(bucketName: String)
 GET           /api/v1/bucket/:bucketName/object/:objectName        controllers.MinioObjectController.getObject(bucketName: String, objectName:String)
+
+### Managing User
+POST          /api/v1/user/create                                  controllers.UserController.create()
+POST          /api/v1/user/login                                   controllers.AuthController.login()
+DELETE        /api/v1/user/logout/:userHash/:accessToken           controllers.AuthController.logout(userHash: String, accessToken: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
