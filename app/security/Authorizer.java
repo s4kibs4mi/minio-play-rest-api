@@ -1,5 +1,12 @@
 package security;
 
+import com.eclipsesource.json.JsonObject;
+import configs.ParamConfig;
+import daos.SessionDao;
+import daos.UserDao;
+import models.Session;
+import models.User;
+import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -13,16 +20,29 @@ import play.mvc.Security;
  */
 
 public class Authorizer extends Security.Authenticator {
+    private SessionDao sessionDao = SessionDao.getInstance();
+    private UserDao userDao = UserDao.getInstance();
 
     @Override
     public String getUsername(Http.Context ctx) {
-
-        return super.getUsername(ctx);
+        Http.Request request = ctx.request();
+        String userHash = request.getHeader(ParamConfig.PARAM_USER_HASH_KEY);
+        String accessToken = request.getHeader(ParamConfig.PARAM_ACCESS_TOKEN_KEY);
+        if (!DataValidation.isNull(userHash) && !DataValidation.isNull(accessToken)) {
+            User user = userDao.find(userHash);
+            if (!DataValidation.isNull(user)) {
+                Session session = sessionDao.find(user.getUserId(), accessToken);
+                return session != null ? session.getAccessToken() : null;
+            }
+        }
+        return null;
     }
 
     @Override
     public Result onUnauthorized(Http.Context ctx) {
-
-        return super.onUnauthorized(ctx);
+        JsonObject result = new JsonObject();
+        result.add("code", ParamConfig.RESULT_UNAUTHORIZED);
+        result.add("response", "Unauthorized request.");
+        return ok(Json.parse(result.toString()));
     }
 }

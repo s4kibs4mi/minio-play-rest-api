@@ -4,6 +4,8 @@ import configs.MinioConfig;
 import play.Logger;
 import play.mvc.Http;
 import play.mvc.Result;
+import play.mvc.Security;
+import security.Authorizer;
 import services.MinioObjectService;
 
 import java.io.File;
@@ -17,6 +19,7 @@ import java.io.InputStream;
  * := Coffee : Dream : Code
  */
 
+@Security.Authenticated(Authorizer.class)
 public class MinioObjectController extends MinioController {
     private String TAG = this.getClass().getSimpleName();
 

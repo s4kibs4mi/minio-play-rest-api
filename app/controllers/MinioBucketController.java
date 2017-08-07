@@ -5,6 +5,8 @@ import configs.ParamConfig;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Result;
+import play.mvc.Security;
+import security.Authorizer;
 import services.MinioBucketService;
 
 /**
@@ -14,6 +16,7 @@ import services.MinioBucketService;
  * := Coffee : Dream : Code
  */
 
+@Security.Authenticated(Authorizer.class)
 public class MinioBucketController extends MinioController {
     private String TAG = this.getClass().getSimpleName();
 

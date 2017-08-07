@@ -21,4 +21,5 @@ public class ParamConfig {
     public static int RESULT_SUCCESS = 200;
     public static int RESULT_ERROR = 500;
     public static int RESULT_FAILED = 501;
+    public static int RESULT_UNAUTHORIZED = 505;
 }
