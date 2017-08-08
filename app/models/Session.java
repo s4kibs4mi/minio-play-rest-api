@@ -3,6 +3,7 @@ package models;
 import com.avaje.ebean.Model;
 import com.eclipsesource.json.JsonObject;
 import configs.ParamConfig;
+import utils.AppUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -69,6 +70,10 @@ public class Session extends Model {
 
     public void setSessionEndTime(Date sessionEndTime) {
         this.sessionEndTime = sessionEndTime;
+    }
+
+    public boolean isExpired() {
+        return AppUtil.getCurrentDate().after(getSessionEndTime());
     }
 
     public JsonObject toJson() {

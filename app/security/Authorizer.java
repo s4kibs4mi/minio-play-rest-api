@@ -32,7 +32,9 @@ public class Authorizer extends Security.Authenticator {
             User user = userDao.find(userHash);
             if (!DataValidation.isNull(user)) {
                 Session session = sessionDao.find(user.getUserId(), accessToken);
-                return session != null ? session.getAccessToken() : null;
+                if (session != null && !session.isExpired()) {
+                    return session.getAccessToken();
+                }
             }
         }
         return null;

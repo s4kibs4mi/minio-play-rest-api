@@ -1,7 +1,10 @@
 package utils;
 
+import org.joda.time.DateTime;
 import play.Logger;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -17,6 +20,10 @@ public class AppUtil {
 
     public static String getUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public static Date getCurrentDate() {
+        return DateTime.now().toDate();
     }
 
     public static void logDebug(Object scope, String message) {
